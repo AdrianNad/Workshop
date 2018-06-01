@@ -1,0 +1,14 @@
+<div style="margin-top:30px">
+  <input type="text" pInputText placeholder="Username" class="ng-dirty ng-invalid"
+         (input)="username = $event.target.value">
+  <p-message class="message" severity="error" text="Username is required" *ngIf="isUsernameEmpty"></p-message>
+</div>
+
+<div>
+  <input type="password" pInputText placeholder="password" class="ng-dirty ng-invalid"
+         (input)="password = $event.target.value">
+  <p-message class="message" severity="error" text="Password is required" *ngIf="isPasswordEmpty"></p-message>
+</div>
+<p-button label="zaloguj" (onClick)="logIn()" styleClass="ui-button-secondary"></p-button>
+<p class="registerInfo">Jeśli jeszcze się nie zarejestrowałeś, możesz to zrobić <a routerLink="/register"> tutaj</a>
+</p>

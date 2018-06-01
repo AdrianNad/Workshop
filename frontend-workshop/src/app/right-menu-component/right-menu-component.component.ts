@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-right-menu-component',
@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./right-menu-component.component.css']
 })
 export class RightMenuComponentComponent implements OnInit {
-
-  constructor() { }
 
   ngOnInit() {
   }
