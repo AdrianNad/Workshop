@@ -1,6 +1,7 @@
-<div class="containerdiv">
-  <p-menu [model]="items">
-    <input type="text" pInputText placeholder="Search">
-    <button pButton label="Logout" icon="fa-sign-out"></button>
-  </p-menu>
+<div class="menuContainer">
+  <p-panelMenu [model]="items"></p-panelMenu>
+  <ul>
+    <li><a routerLink="services/list">list</a></li>
+    <li><a routerLink="services/cards">cards</a></li>
+  </ul>
 </div>
