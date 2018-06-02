@@ -5,6 +5,7 @@ import { ServiceCardsComponent } from './service-cards/service-cards.component';
 import {RegisterFormComponent} from './register-form/register-form.component';
 import {ContactComponent} from './contact/contact.component';
 import {RulesComponent} from './rules/rules.component';
+import {RepairHistoryComponent} from './repair-history/repair-history.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'rules',
     component: RulesComponent
+  },
+  {
+    path: 'repairHistory',
+    component: RepairHistoryComponent
   }
 ];
 

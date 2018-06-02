@@ -24,6 +24,7 @@ import { ContactComponent } from './contact/contact.component';
 import { RulesComponent } from './rules/rules.component';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import { RepairHistoryComponent } from './repair-history/repair-history.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     LoginFormComponent,
     RegisterFormComponent,
     ContactComponent,
-    RulesComponent
+    RulesComponent,
+    RepairHistoryComponent
   ],
   imports: [
     BrowserModule,

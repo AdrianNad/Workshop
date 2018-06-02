@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 
 @Component({
@@ -8,7 +8,8 @@ import {MenuItem} from 'primeng/api';
 })
 export class LeftMenuComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   items: MenuItem[];
 
@@ -28,6 +29,11 @@ export class LeftMenuComponentComponent implements OnInit {
         label: 'Wybierz usługę',
         icon: 'fa-file-o',
         url: 'services/cards',
+      },
+      {
+        label: 'historia napraw',
+        icon: 'fa-file-o',
+        url: 'repairHistory',
       }];
   }
 }
