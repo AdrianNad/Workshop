@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ContentComponentComponent } from './content-component/content-component.component';
@@ -19,6 +19,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import {MessageModule} from 'primeng/message';
     CardModule,
     PickListModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    DropdownModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

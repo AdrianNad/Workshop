@@ -1,3 +1,28 @@
-<p>
-  register-form works!
-</p>
+<div class="fieldInput">
+  <input type="text" pInputText placeholder="email" class="ng-dirty ng-invalid"
+         (input)="email = $event.target.value">
+  <p-message class="message" severity="error" text="Username is required" *ngIf="isEmailEmpty"></p-message>
+</div>
+
+<div class="fieldInput">
+  <input type="password" pInputText placeholder="password" class="ng-dirty ng-invalid"
+         (input)="password = $event.target.value">
+  <p-message class="message" severity="error" text="Password is required" *ngIf="isPasswordEmpty"></p-message>
+</div>
+
+<div class="fieldInput">
+  <input type="text" pInputText placeholder="firstname" class="ng-dirty ng-invalid"
+         (input)="firstname = $event.target.value">
+  <p-message class="message" severity="error" text="Firstname is required" *ngIf="isFirstnameEmpty"></p-message>
+</div>
+
+<div class="fieldInput">
+  <input type="text" pInputText placeholder="surname" class="ng-dirty ng-invalid"
+         (input)="surname = $event.target.value">
+  <p-message class="message" severity="error" text="Surname is required" *ngIf="isSurnameEmpty"></p-message>
+</div>
+
+<div class="fieldInput">
+  <p-dropdown [options]="roles" [(ngModel)]="selectedRole"></p-dropdown>
+</div>
+<p-button style="margin-top: 20px" label="zarejestruj" (onClick)="register()" styleClass="ui-button-secondary"></p-button>
