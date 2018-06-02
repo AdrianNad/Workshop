@@ -20,6 +20,10 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {DropdownModule} from 'primeng/dropdown';
+import { ContactComponent } from './contact/contact.component';
+import { RulesComponent } from './rules/rules.component';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import {DropdownModule} from 'primeng/dropdown';
     ServiceListComponentComponent,
     FooterComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ContactComponent,
+    RulesComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,9 @@ import {DropdownModule} from 'primeng/dropdown';
     MessagesModule,
     MessageModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    InputTextModule,
+    InputTextareaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

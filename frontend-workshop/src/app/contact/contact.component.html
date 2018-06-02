@@ -1,0 +1,13 @@
+<div class="fieldInput">
+  <input type="text" pInputText placeholder="email" class="ng-dirty ng-invalid"
+         (input)="email = $event.target.value">
+  <p-message class="message" severity="error" text="Email is required" *ngIf="isEmailEmpty"></p-message>
+</div>
+<div class="fieldInput">
+  <p-dropdown [options]="types" [(ngModel)]="selectedType"></p-dropdown>
+</div>
+<div class="fieldInput">
+<textarea [rows]="5" [cols]="30" pInputTextarea placeholder="message" [(ngModel)]="message"></textarea>
+<p-message class="message" severity="error" text="Message is required" *ngIf="isMessageEmpty"></p-message>
+</div>
+<p-button style="margin-top: 20px" label="wyślij" (onClick)="send()" styleClass="ui-button-secondary"></p-button>

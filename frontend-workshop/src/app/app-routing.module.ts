@@ -3,6 +3,8 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import { ServiceListComponentComponent } from './service-list-component/service-list-component.component';
 import { ServiceCardsComponent } from './service-cards/service-cards.component';
 import {RegisterFormComponent} from './register-form/register-form.component';
+import {ContactComponent} from './contact/contact.component';
+import {RulesComponent} from './rules/rules.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterFormComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: 'rules',
+    component: RulesComponent
   }
 ];
 
