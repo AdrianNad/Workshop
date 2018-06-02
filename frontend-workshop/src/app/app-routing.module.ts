@@ -6,6 +6,8 @@ import {RegisterFormComponent} from './register-form/register-form.component';
 import {ContactComponent} from './contact/contact.component';
 import {RulesComponent} from './rules/rules.component';
 import {RepairHistoryComponent} from './repair-history/repair-history.component';
+import {MessagesComponent} from './messages/messages.component';
+import {MessageResponseComponent} from './message-response/message-response.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,14 @@ const routes: Routes = [
   {
     path: 'repairHistory',
     component: RepairHistoryComponent
+  },
+  {
+    path: 'messages',
+    component: MessagesComponent
+  },
+  {
+    path: 'messages/response',
+    component: MessageResponseComponent
   }
 ];
 

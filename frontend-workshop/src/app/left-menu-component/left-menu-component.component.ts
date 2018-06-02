@@ -34,6 +34,11 @@ export class LeftMenuComponentComponent implements OnInit {
         label: 'historia napraw',
         icon: 'fa-file-o',
         url: 'repairHistory',
+      },
+      {
+        label: 'wiadomości',
+        icon: 'fa-file-o',
+        url: 'messages',
       }];
   }
 }

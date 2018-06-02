@@ -25,6 +25,10 @@ import { RulesComponent } from './rules/rules.component';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { RepairHistoryComponent } from './repair-history/repair-history.component';
+import { ContactMessageComponent } from './contact-message/contact-message.component';
+import { MessagesComponent } from './messages/messages.component';
+import {FieldsetModule} from 'primeng/fieldset';
+import { MessageResponseComponent } from './message-response/message-response.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,10 @@ import { RepairHistoryComponent } from './repair-history/repair-history.componen
     RegisterFormComponent,
     ContactComponent,
     RulesComponent,
-    RepairHistoryComponent
+    RepairHistoryComponent,
+    ContactMessageComponent,
+    MessagesComponent,
+    MessageResponseComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,8 @@ import { RepairHistoryComponent } from './repair-history/repair-history.componen
     DropdownModule,
     FormsModule,
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    FieldsetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
