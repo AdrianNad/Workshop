@@ -39,6 +39,11 @@ export class LeftMenuComponentComponent implements OnInit {
         label: 'wiadomości',
         icon: 'fa-file-o',
         url: 'messages',
+      },
+      {
+        label: 'umów się na diagnoze',
+        icon: 'fa-file-o',
+        url: 'diagnosis/scheduler',
       }];
   }
 }

@@ -1,0 +1,4 @@
+<p-schedule [events]="events" locale="pl" [businessHours]="businessHours" [header]="headerConfig" [hiddenDays]="0"
+            [allDaySlot]="false" slotDuration="01:00:00" height="auto"
+            minTime="10:00:00" maxTime="18:00:00" defaultView="agendaWeek"
+            (onDayClick)="selectDay($event.dates)"></p-schedule>

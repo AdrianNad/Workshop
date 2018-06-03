@@ -1,8 +1,12 @@
-<app-header-component></app-header-component>
 <div class="container">
-  <app-left-menu-component></app-left-menu-component>
-  <app-content-component></app-content-component>
-  <app-right-menu-component></app-right-menu-component>
+  <p-growl [(value)]="messages" [life]="5000"></p-growl>
+  <app-header-component></app-header-component>
+  <div class="contentContainer">
+    <app-left-menu-component></app-left-menu-component>
+    <app-content-component></app-content-component>
+    <app-right-menu-component></app-right-menu-component>
+  </div>
+  <div class="footer">
+    <app-footer></app-footer>
+  </div>
 </div>
-<div class="footer"><app-footer></app-footer></div>
-

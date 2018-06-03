@@ -1,0 +1,11 @@
+<div class="fieldInput">
+  <p-dropdown [options]="dates" [(ngModel)]="selectedDate"></p-dropdown>
+</div>
+<div class="fieldInput">
+  <input type="text" pInputText placeholder="numer rejestracyjny" class="ng-dirty ng-invalid"
+         (input)="licensePlate = $event.target.value">
+  <p-message class="message" severity="error" text="numer rejestracyjny musi być uzupełniony"
+             *ngIf="isLicensePlateEmpty"></p-message>
+</div>
+<p-button style="margin-top: 20px" label="zarezerwuj" (onClick)="createDiagnosisVisit()"
+          styleClass="ui-button-secondary"></p-button>

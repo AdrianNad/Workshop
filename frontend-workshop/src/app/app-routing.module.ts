@@ -8,6 +8,8 @@ import {RulesComponent} from './rules/rules.component';
 import {RepairHistoryComponent} from './repair-history/repair-history.component';
 import {MessagesComponent} from './messages/messages.component';
 import {MessageResponseComponent} from './message-response/message-response.component';
+import {DiagnosisSchedulerComponent} from './diagnosis-scheduler/diagnosis-scheduler.component';
+import {DiagnosisVisitCreatorComponent} from './diagnosis-visit-creator/diagnosis-visit-creator.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,14 @@ const routes: Routes = [
   {
     path: 'messages/response',
     component: MessageResponseComponent
+  },
+  {
+    path: 'diagnosis/scheduler',
+    component: DiagnosisSchedulerComponent
+  },
+  {
+    path: 'diagnosis/creator',
+    component: DiagnosisVisitCreatorComponent
   }
 ];
 
