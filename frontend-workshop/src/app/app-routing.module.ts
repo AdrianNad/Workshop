@@ -10,6 +10,7 @@ import {MessagesComponent} from './messages/messages.component';
 import {MessageResponseComponent} from './message-response/message-response.component';
 import {DiagnosisSchedulerComponent} from './diagnosis-scheduler/diagnosis-scheduler.component';
 import {DiagnosisVisitCreatorComponent} from './diagnosis-visit-creator/diagnosis-visit-creator.component';
+import {AccountManagementComponent} from './account-management/account-management.component';
 
 const routes: Routes = [
   {
@@ -51,9 +52,12 @@ const routes: Routes = [
   {
     path: 'diagnosis/creator',
     component: DiagnosisVisitCreatorComponent
+  },
+  {
+    path: 'account',
+    component: AccountManagementComponent
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [ RouterModule ]

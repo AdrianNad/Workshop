@@ -37,6 +37,7 @@ import {DiagnosisSchedulerComponent} from './diagnosis-scheduler/diagnosis-sched
 import {ScheduleModule} from 'primeng/schedule';
 import { DiagnosisVisitCreatorComponent } from './diagnosis-visit-creator/diagnosis-visit-creator.component';
 import {GrowlModule} from 'primeng/growl';
+import { AccountManagementComponent } from './account-management/account-management.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {GrowlModule} from 'primeng/growl';
     MessagesComponent,
     MessageResponseComponent,
     DiagnosisSchedulerComponent,
-    DiagnosisVisitCreatorComponent
+    DiagnosisVisitCreatorComponent,
+    AccountManagementComponent
   ],
   imports: [
     BrowserModule,
