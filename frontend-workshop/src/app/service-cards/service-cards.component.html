@@ -6,3 +6,8 @@
     </div>
   </ng-template>
 </p-pickList>
+<div class="fieldInput">
+  <p-dropdown [options]="licensePlates" [(ngModel)]="licensePlate"></p-dropdown>
+<p-button style="margin-left: 15px;" label="zgłoś" (onClick)="createRepairRequest()"
+          styleClass="ui-button-secondary"></p-button>
+</div>

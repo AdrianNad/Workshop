@@ -10,8 +10,8 @@ import {AppComponent} from '../app.component';
 })
 export class DiagnosisVisitCreatorComponent implements OnInit {
 
-  isLicensePlateEmpty: boolean;
   licensePlate: String;
+  licensePlates: SelectItem[];
   dates: SelectItem[];
   selectedDate: String;
 
@@ -19,23 +19,18 @@ export class DiagnosisVisitCreatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLicensePlateEmpty = false;
     this.dates = [
       {label: '21-06-2018', value: '21-06-2018'},
       {label: '21-06-2018', value: '21-06-2018'},
     ];
+    this.licensePlates = [
+      {label: 'EFLZSF', value: 'EFLZSF'},
+      {label: 'ASDF', value: 'ASDF'},
+    ];
   }
 
   createDiagnosisVisit() {
-    if (this.validateIfNotEmpty()) {
-      this.isLicensePlateEmpty = true;
-    } else {
       this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Wizyta została zarejestrowana'});
       this.router.navigateByUrl('diagnosis/scheduler');
-    }
-  }
-
-  validateIfNotEmpty() {
-    return !this.licensePlate;
   }
 }
