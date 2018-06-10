@@ -1,3 +1,7 @@
 .serviceTable {
   width: 100%;
 }
+
+.fieldInput {
+  margin-top: 15px;
+}

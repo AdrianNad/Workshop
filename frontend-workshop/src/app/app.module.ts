@@ -46,6 +46,7 @@ import {UserServiceService} from './services/user-service.service';
 import {TokenStorageService} from './services/token-storage.service';
 import {AuthService} from './services/auth.service';
 import { MainComponent } from './main/main.component';
+import {WorkshopServiceService} from './services/workshop-service.service';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { MainComponent } from './main/main.component';
     UserServiceService,
     TokenStorageService,
     AuthService,
-    LeftMenuComponentComponent
+    LeftMenuComponentComponent,
+    WorkshopServiceService
   ],
   bootstrap: [AppComponent]
 })

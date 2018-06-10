@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {WorkshopServiceService} from '../services/workshop-service.service';
+import {HttpResponse} from '@angular/common/http';
+import {AppComponent} from '../app.component';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-service-list-component',
@@ -7,9 +11,66 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiceListComponentComponent implements OnInit {
 
-  constructor() { }
+  isNameEmpty: boolean;
+  isPriceEmpty: boolean;
+  name: String;
+  price: String;
+  services: WorkshopService[];
 
-  ngOnInit() {
+  constructor(private workShopService: WorkshopServiceService, private appComponent: AppComponent) {
   }
 
+  ngOnInit() {
+    this.loadServices();
+  }
+
+  create() {
+    this.validateIfNotEmpty();
+    if (!this.isNameEmpty) {
+      this.workShopService.createService(this.name, this.price).catch(error => {
+        this.appComponent.messages.push({
+          severity: 'error', summary: 'Błąd'
+          , detail: 'Wystąpił błąd serwera'
+        });
+        return Observable.create(null);
+      })
+        .subscribe(
+          (response: HttpResponse<any>) => {
+            this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Usługa została dodana'});
+            this.loadServices();
+          });
+    }
+  }
+
+  loadServices() {
+    this.workShopService.getServices().catch(error => {
+      this.appComponent.messages.push({
+        severity: 'error', summary: 'Błąd'
+        , detail: 'Wystąpił błąd serwera'
+      });
+      return Observable.create(null);
+    })
+      .subscribe(
+        (response: HttpResponse<WorkshopService[]>) => {
+          this.services = response.body;
+        });
+  }
+
+  validateIfNotEmpty() {
+    this.isNameEmpty = !this.name;
+  }
+
+  delete(i: WorkshopService) {
+    this.workShopService.deleteService(i.id).catch(error => {
+      this.appComponent.messages.push({
+        severity: 'error', summary: 'Błąd'
+        , detail: 'Wystąpił błąd serwera'
+      });
+      return Observable.create(null);
+    })
+      .subscribe(
+        (response: HttpResponse<WorkshopService[]>) => {
+          this.loadServices();
+        });
+  }
 }

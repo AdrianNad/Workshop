@@ -1,4 +1,23 @@
-<p-dataTable class="serviceTable">
+<p-dataTable class="serviceTable" [value]="services">
   <p-column field="name" header="nazwa"></p-column>
   <p-column field="price" header="cena"></p-column>
+  <p-column>
+    <ng-template let-i="rowData" pTemplate="body">
+        <p-button style="float: right" label="usuń" styleClass="ui-button-secondary" (onClick)="delete(i)"></p-button>
+    </ng-template>
+  </p-column>
 </p-dataTable>
+
+<div class="adminPanel">
+  <div class="fieldInput">
+    <input type="text" pInputText placeholder="nazwa" class="ng-dirty ng-invalid"
+           (input)="name = $event.target.value">
+    <p-message class="message" severity="error" text="nazwa jest wymagana" *ngIf="isNameEmpty"></p-message>
+  </div>
+  <div class="fieldInput">
+    <input type="number" pInputText placeholder="cena" class="ng-dirty ng-invalid"
+           (input)="price = $event.target.value">
+    <p-message class="message" severity="error" text="cena jest wymagana" *ngIf="isPriceEmpty"></p-message>
+  </div>
+</div>
+<p-button style="margin-top: 20px" label="dodaj" (onClick)="create()" styleClass="ui-button-secondary"></p-button>
