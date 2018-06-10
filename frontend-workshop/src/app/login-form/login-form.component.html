@@ -9,6 +9,6 @@
          (input)="password = $event.target.value">
   <p-message class="message" severity="error" text="Password is required" *ngIf="isPasswordEmpty"></p-message>
 </div>
-<p-button label="zaloguj" (onClick)="logIn()" styleClass="ui-button-secondary"></p-button>
+<p-button label="zaloguj" (onClick)="login()" styleClass="ui-button-secondary"></p-button>
 <p class="registerInfo">Jeśli jeszcze się nie zarejestrowałeś, możesz to zrobić <a routerLink="/register"> tutaj</a>
 </p>

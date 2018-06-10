@@ -1,0 +1,10 @@
+<p-dataTable class="diagnosisTable" [value]="diagnosis">
+  <p-column field="car" header="samochód"></p-column>
+  <p-column>
+    <ng-template let-h="rowData" pTemplate="body">
+      <a routerLink="/messages/response">
+        <p-button style="float: right" label="zakończ diagnoze" styleClass="ui-button-secondary"></p-button>
+      </a>
+    </ng-template>
+  </p-column>
+</p-dataTable>

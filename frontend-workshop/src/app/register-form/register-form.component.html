@@ -26,3 +26,4 @@
   <p-dropdown [options]="roles" [(ngModel)]="selectedRole"></p-dropdown>
 </div>
 <p-button style="margin-top: 20px" label="zarejestruj" (onClick)="register()" styleClass="ui-button-secondary"></p-button>
+<p class="failMessage" *ngIf="failMessage">Wystąpiły błędy przy próbie zalogowania</p>

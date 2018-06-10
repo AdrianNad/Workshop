@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../services/auth.service';
+import {TokenStorageService} from '../services/token-storage.service';
+import {HttpResponse} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {AppComponent} from '../app.component';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-login-form',
@@ -8,18 +14,30 @@ import { Component, OnInit } from '@angular/core';
 export class LoginFormComponent implements OnInit {
   isUsernameEmpty: boolean;
   isPasswordEmpty: boolean;
-  username: String;
-  password: String;
+  username: string;
+  password: string;
 
-  constructor() { }
+  constructor(private authService: AuthService, private token: TokenStorageService, private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit() {
     this.isUsernameEmpty = false;
     this.isPasswordEmpty = false;
   }
 
-  logIn() {
+  login(): void {
     this.isUsernameEmpty = !this.username;
     this.isPasswordEmpty = !this.password;
+    this.authService.attemptAuth(this.username, this.password).catch(error => {
+      this.appComponent.messages.push({severity: 'error', summary: 'Błąd'
+        , detail: 'Podałeś złą nazwe użytkownika lub hasło, spróbuj ponownie'});
+      return Observable.create(null);
+    })
+      .subscribe(
+      (response: HttpResponse<any>) => {
+        this.token.saveToken(response.headers.get('Authorization'));
+        this.router.navigateByUrl('/main');
+        this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Zostałeś zalogowany'});
+      }
+    );
   }
 }

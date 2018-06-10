@@ -1,3 +1,7 @@
 .fieldInput {
   margin-top: 15px;
 }
+
+.failMessage {
+  color: red;
+}

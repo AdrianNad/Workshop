@@ -14,6 +14,9 @@ export class LeftMenuComponentComponent implements OnInit {
   items: MenuItem[];
 
   ngOnInit() {
+    this.fillMenu();
+  }
+  fillMenu() {
     this.items = [
       {
         label: 'rejestracja',
@@ -49,6 +52,16 @@ export class LeftMenuComponentComponent implements OnInit {
         label: 'Konto',
         icon: 'fa-file-o',
         url: 'account',
+      },
+      {
+        label: 'Naprawy',
+        icon: 'fa-file-o',
+        url: 'orderedRepairs',
+      },
+      {
+        label: 'Diagnozy',
+        icon: 'fa-file-o',
+        url: 'diagnosisList',
       }];
   }
 }

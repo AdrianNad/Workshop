@@ -38,6 +38,14 @@ import {ScheduleModule} from 'primeng/schedule';
 import { DiagnosisVisitCreatorComponent } from './diagnosis-visit-creator/diagnosis-visit-creator.component';
 import {GrowlModule} from 'primeng/growl';
 import { AccountManagementComponent } from './account-management/account-management.component';
+import { OrderedRepairsComponent } from './ordered-repairs/ordered-repairs.component';
+import { RepairComponent } from './repair/repair.component';
+import { DiagnosisListComponent } from './diagnosis-list/diagnosis-list.component';
+import {HttpClientModule} from '@angular/common/http';
+import {UserServiceService} from './services/user-service.service';
+import {TokenStorageService} from './services/token-storage.service';
+import {AuthService} from './services/auth.service';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +67,11 @@ import { AccountManagementComponent } from './account-management/account-managem
     MessageResponseComponent,
     DiagnosisSchedulerComponent,
     DiagnosisVisitCreatorComponent,
-    AccountManagementComponent
+    AccountManagementComponent,
+    OrderedRepairsComponent,
+    RepairComponent,
+    DiagnosisListComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -81,9 +93,15 @@ import { AccountManagementComponent } from './account-management/account-managem
     InputTextareaModule,
     FieldsetModule,
     ScheduleModule,
-    GrowlModule
+    GrowlModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserServiceService,
+    TokenStorageService,
+    AuthService,
+    LeftMenuComponentComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

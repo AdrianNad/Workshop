@@ -1,0 +1,8 @@
+<p-fieldset>
+  <p-header>{{licensePlate}}</p-header>
+  <p-dataTable class="repairTable" [value]="services">
+    <p-column field="value" header="nazwa"></p-column>
+  </p-dataTable>
+  <p-button (onClick)="refresh()" style="float: right" label="odbiór auta" styleClass="ui-button-secondary"></p-button>
+  <p-button (onClick)="refresh()" style="float: right" label="anuluj" styleClass="ui-button-secondary"></p-button>
+</p-fieldset>

@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectItem} from 'primeng/api';
+import {UserServiceService} from '../services/user-service.service';
+import {HttpResponse} from '@angular/common/http';
+import {AppComponent} from '../app.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
@@ -17,8 +21,9 @@ export class RegisterFormComponent implements OnInit {
   surname: String;
   roles: SelectItem[];
   selectedRole: String;
+  failMessage: boolean;
 
-  constructor() {
+  constructor(private userService: UserServiceService, private appComponent: AppComponent, private router: Router) {
   }
 
   ngOnInit() {
@@ -34,6 +39,16 @@ export class RegisterFormComponent implements OnInit {
 
   register() {
     this.validateIfNotEmpty();
+    if (!this.isEmailEmpty && !this.isPasswordEmpty && !this.isFirstnameEmpty && !this.isSurnameEmpty) {
+    this.userService.register(this.email, this.password, this.firstname, this.surname, this.selectedRole).subscribe(
+      (response: HttpResponse<any>) => {
+        console.log(response);
+      });
+    this.router.navigateByUrl('/main');
+    this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Konto zostało utworzone, możesz się zalogować'});
+    } else {
+      this.failMessage = true;
+    }
   }
 
   validateIfNotEmpty() {
@@ -42,5 +57,4 @@ export class RegisterFormComponent implements OnInit {
     this.isFirstnameEmpty = !this.firstname;
     this.isSurnameEmpty = !this.surname;
   }
-
 }
