@@ -22,7 +22,7 @@
   <p-message class="message" severity="error" text="Surname is required" *ngIf="isSurnameEmpty"></p-message>
 </div>
 
-<div class="fieldInput">
+<div class="fieldInput" [hidden]="!isAdmin()">
   <p-dropdown [options]="roles" [(ngModel)]="selectedRole"></p-dropdown>
 </div>
 <p-button style="margin-top: 20px" label="zarejestruj" (onClick)="register()" styleClass="ui-button-secondary"></p-button>

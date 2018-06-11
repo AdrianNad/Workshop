@@ -1,9 +1,14 @@
 <div class="menuContainer">
   <p class="paragraph">Adres:</p>
-  <p  class="timeSpecifier">ul. Mechaniczna 27, łódź 99-999</p>
+  <p class="timeSpecifier">ul. Mechaniczna 27, łódź 99-999</p>
   <p class="paragraph">Godziny otwarcia: </p>
   <p class="timeSpecifier">Poniedziałek-piątek: 10:00- 18:00</p>
   <p class="timeSpecifier">Sobota: 10:00- 15:00</p>
   <p class="timeSpecifier">Niedziela: zamknięte</p>
-  <app-login-form></app-login-form>
+  <div [hidden]="isLoggedIn()">
+    <app-login-form></app-login-form>
+  </div>
+  <div [hidden]="!isLoggedIn()">
+    <p-button label="wyloguj" (onClick)="logout()" styleClass="ui-button-secondary"></p-button>
+  </div>
 </div>

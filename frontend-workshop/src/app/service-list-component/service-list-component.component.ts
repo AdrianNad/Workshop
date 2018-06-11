@@ -3,6 +3,7 @@ import {WorkshopServiceService} from '../services/workshop-service.service';
 import {HttpResponse} from '@angular/common/http';
 import {AppComponent} from '../app.component';
 import {Observable} from 'rxjs/Observable';
+import {TokenStorageService} from '../services/token-storage.service';
 
 @Component({
   selector: 'app-service-list-component',
@@ -16,11 +17,14 @@ export class ServiceListComponentComponent implements OnInit {
   name: String;
   price: String;
   services: WorkshopService[];
+  role: string;
 
-  constructor(private workShopService: WorkshopServiceService, private appComponent: AppComponent) {
+  constructor(private workShopService: WorkshopServiceService, private appComponent: AppComponent
+    , private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit() {
+    this.role = this.tokenStorage.getRole();
     this.loadServices();
   }
 
@@ -70,7 +74,10 @@ export class ServiceListComponentComponent implements OnInit {
     })
       .subscribe(
         (response: HttpResponse<WorkshopService[]>) => {
-          this.loadServices();
+          this.services = response.body;
         });
+  }
+  isAdmin() {
+    return this.role === 'admin';
   }
 }

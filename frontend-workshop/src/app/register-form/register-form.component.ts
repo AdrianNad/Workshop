@@ -4,6 +4,7 @@ import {UserServiceService} from '../services/user-service.service';
 import {HttpResponse} from '@angular/common/http';
 import {AppComponent} from '../app.component';
 import {Router} from '@angular/router';
+import {TokenStorageService} from '../services/token-storage.service';
 
 @Component({
   selector: 'app-register-form',
@@ -22,11 +23,14 @@ export class RegisterFormComponent implements OnInit {
   roles: SelectItem[];
   selectedRole: String;
   failMessage: boolean;
+  currentRole: string;
 
-  constructor(private userService: UserServiceService, private appComponent: AppComponent, private router: Router) {
+  constructor(private userService: UserServiceService, private appComponent: AppComponent, private router: Router
+  , private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit() {
+    this.currentRole = this.tokenStorage.getRole();
     this.isEmailEmpty = false;
     this.isPasswordEmpty = false;
     this.isFirstnameEmpty = false;
@@ -35,6 +39,7 @@ export class RegisterFormComponent implements OnInit {
       {label: 'customer', value: 'customer'},
       {label: 'employee', value: 'employee'},
     ];
+    this.selectedRole = 'customer';
   }
 
   register() {
@@ -56,5 +61,8 @@ export class RegisterFormComponent implements OnInit {
     this.isPasswordEmpty = !this.password;
     this.isFirstnameEmpty = !this.firstname;
     this.isSurnameEmpty = !this.surname;
+  }
+  isAdmin() {
+    return this.currentRole === 'admin';
   }
 }

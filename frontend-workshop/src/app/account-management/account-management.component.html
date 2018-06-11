@@ -1,11 +1,30 @@
-<p>Imię: {{name}}</p>
-<p>Nazwisko: {{surname}}</p>
+<p>Imię: {{user.firstname}}</p>
+<p>Nazwisko: {{user.surname}}</p>
 
 <div class="title">
   Lista samochodów
 </div>
-<p-dataTable class="carTable">
+<p-dataTable class="carTable" [value]="cars">
   <p-column field="licensePlate" header="nr. rejestracyjny"></p-column>
   <p-column field="year" header="rok produkcji"></p-column>
   <p-column field="brand" header="marka"></p-column>
 </p-dataTable>
+
+<div class="adminPanel">
+  <div class="fieldInput">
+    <input type="text" pInputText placeholder="numer rejestracyjny" class="ng-dirty ng-invalid"
+           (input)="licensePlate = $event.target.value">
+    <p-message class="message" severity="error" text="nazwa jest wymagana" *ngIf="isLicensePlateEmpty"></p-message>
+  </div>
+  <div class="fieldInput">
+    <input type="number" pInputText placeholder="rok produkcji" class="ng-dirty ng-invalid"
+           (input)="year = $event.target.value">
+    <p-message class="message" severity="error" text="rok produkcji jest wymagany" *ngIf="isYearEmpty"></p-message>
+  </div>
+  <div class="fieldInput">
+    <input type="text" pInputText placeholder="marka" class="ng-dirty ng-invalid"
+           (input)="brand = $event.target.value">
+    <p-message class="message" severity="error" text="marka jest wymagana" *ngIf="isBrandEmpty"></p-message>
+  </div>
+</div>
+<p-button style="margin-top: 20px" label="dodaj" (onClick)="addCar()" styleClass="ui-button-secondary"></p-button>

@@ -8,7 +8,7 @@
   </p-column>
 </p-dataTable>
 
-<div class="adminPanel">
+<div class="adminPanel" [hidden]="!isAdmin()">
   <div class="fieldInput">
     <input type="text" pInputText placeholder="nazwa" class="ng-dirty ng-invalid"
            (input)="name = $event.target.value">
@@ -19,5 +19,5 @@
            (input)="price = $event.target.value">
     <p-message class="message" severity="error" text="cena jest wymagana" *ngIf="isPriceEmpty"></p-message>
   </div>
-</div>
 <p-button style="margin-top: 20px" label="dodaj" (onClick)="create()" styleClass="ui-button-secondary"></p-button>
+</div>

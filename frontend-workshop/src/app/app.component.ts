@@ -11,4 +11,7 @@ export class AppComponent {
 
   messages: Message[] = [];
 
+  refresh(): void {
+    window.location.reload();
+  }
 }

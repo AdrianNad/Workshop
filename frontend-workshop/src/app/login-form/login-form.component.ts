@@ -5,6 +5,7 @@ import {HttpResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {AppComponent} from '../app.component';
 import {Observable} from 'rxjs/Observable';
+import {UserServiceService} from '../services/user-service.service';
 
 @Component({
   selector: 'app-login-form',
@@ -18,7 +19,7 @@ export class LoginFormComponent implements OnInit {
   password: string;
 
   constructor(private authService: AuthService, private token: TokenStorageService, private router: Router
-    , private appComponent: AppComponent) {
+    , private appComponent: AppComponent, private userService: UserServiceService) {
   }
 
   ngOnInit() {
@@ -39,9 +40,27 @@ export class LoginFormComponent implements OnInit {
       .subscribe(
         (response: HttpResponse<any>) => {
           this.token.saveToken(response.headers.get('Authorization'));
+          this.saveUserInfo(this.username);
           this.router.navigateByUrl('/main');
           this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Zostałeś zalogowany'});
         }
       );
+  }
+
+  saveUserInfo(email: string) {
+      this.userService.getUserInformation(email).catch(() => {
+        this.appComponent.messages.push({
+          severity: 'error', summary: 'Błąd'
+          , detail: 'Wystąpił błąd serwera'
+        });
+        return Observable.create(null);
+      })
+        .subscribe(
+          (response: HttpResponse<User>) => {
+            console.log(response);
+            this.token.saveRole(response.body.role);
+            this.token.saveEmail(response.body.email);
+            this.appComponent.refresh();
+          });
   }
 }
