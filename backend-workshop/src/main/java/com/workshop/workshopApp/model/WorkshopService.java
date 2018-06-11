@@ -1,27 +1,21 @@
 package com.workshop.workshopApp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Document
+@AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Builder
+@Document
+public class WorkshopService {
 
     @Id
     private String id;
-
-    private String firstname;
-
-    private String password;
-
-    private String email;
-
-    private String surname;
-
-    private String phone;
-
-    private String role;
+    private String name;
+    private int price;
 }

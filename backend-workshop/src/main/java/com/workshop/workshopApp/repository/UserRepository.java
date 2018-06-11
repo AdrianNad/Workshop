@@ -1,13 +1,16 @@
 package com.workshop.workshopApp.repository;
 
 import com.workshop.workshopApp.model.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+@Repository
+public interface UserRepository extends MongoRepository<User, String> {
     List<User> findAll();
-    User findByName(String name);
+    User findByFirstname(String name);
     User findByEmail(String email);
 }
 
