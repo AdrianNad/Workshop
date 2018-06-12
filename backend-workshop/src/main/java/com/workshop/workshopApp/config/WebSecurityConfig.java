@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String SIGN_UP_URL = "/users/signUp";
     private static final String LOGIN_URL = "/login";
+    private static final String SERVICES_URL = "/services";
 
     private UserDetailsService userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -42,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
+                .antMatchers(HttpMethod.GET, SERVICES_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
