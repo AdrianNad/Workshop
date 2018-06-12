@@ -1,8 +1,21 @@
 <p-fieldset>
-  <p-header>{{licensePlate}}</p-header>
-  <p-dataTable class="repairTable" [value]="services">
-    <p-column field="value" header="nazwa"></p-column>
+  <p-header>
+    <table border="1">
+      <tr>
+        <td>{{licensePlate}}</td>
+        <td>{{name}}</td>
+        <td>{{surname}}</td>
+        <td>{{phone}}</td>
+        <td>{{repair.date | date:'yyyy-MM-dd HH:mm'}}</td>
+        <td>{{repair.price}} zł</td>
+      </tr>
+    </table>
+  </p-header>
+  <p-dataTable class="serviceTable" [value]="repair.workshopServices">
+    <p-column field="name" header="nazwa"></p-column>
+    <p-column field="price" header="cena"></p-column>
   </p-dataTable>
-  <p-button (onClick)="refresh()" style="float: right" label="odbiór auta" styleClass="ui-button-secondary"></p-button>
-  <p-button (onClick)="refresh()" style="float: right" label="anuluj" styleClass="ui-button-secondary"></p-button>
 </p-fieldset>
+<p-button (onClick)="finish()" style="float: right" label="Zakończ" styleClass="ui-button-secondary"></p-button>
+<p-button (onClick)="repaired()" style="float: right" label="odbiór auta" styleClass="ui-button-secondary" *ngIf="!this.repair.doesCustomerKnow"></p-button>
+<p-button (onClick)="cancel()" style="float: right" label="anuluj" styleClass="ui-button-secondary"></p-button>

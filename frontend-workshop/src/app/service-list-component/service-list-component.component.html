@@ -1,7 +1,7 @@
 <p-dataTable class="serviceTable" [value]="services">
   <p-column field="name" header="nazwa"></p-column>
   <p-column field="price" header="cena"></p-column>
-  <p-column>
+  <p-column [hidden]="!isAdmin()">
     <ng-template let-i="rowData" pTemplate="body">
         <p-button style="float: right" label="usuń" styleClass="ui-button-secondary" (onClick)="delete(i)"></p-button>
     </ng-template>

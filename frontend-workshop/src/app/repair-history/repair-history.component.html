@@ -1,9 +1,8 @@
 <div class="title">
   Lista napraw
 </div>
-<p-dataTable class="repairTable">
-  <p-column field="name" header="nazwa"></p-column>
-  <p-column field="price" header="cena"></p-column>
+<p-dataTable class="repairTable" [value]="repairs">
   <p-column field="date" header="data"></p-column>
-  <p-column field="car" header="samochód"></p-column>
+  <p-column field="licensePlate" header="samochód"></p-column>
+  <p-column field="price" header="cena"></p-column>
 </p-dataTable>

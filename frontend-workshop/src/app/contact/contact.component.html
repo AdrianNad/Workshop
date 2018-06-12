@@ -1,4 +1,4 @@
-<div class="fieldInput">
+<div class="fieldInput" [hidden]="isLoggedIn()">
   <input type="text" pInputText placeholder="email" class="ng-dirty ng-invalid"
          (input)="email = $event.target.value">
   <p-message class="message" severity="error" text="Email is required" *ngIf="isEmailEmpty"></p-message>

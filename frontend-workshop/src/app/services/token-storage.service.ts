@@ -10,6 +10,7 @@ export class TokenStorageService {
   private TOKEN_KEY = 'token';
   private ROLE_KEY = 'role';
   private EMAIL_KEY = 'email';
+  private ID_KEY = 'id';
 
   signOut() {
     window.sessionStorage.removeItem(this.TOKEN_KEY);
@@ -42,5 +43,14 @@ export class TokenStorageService {
 
   public getEmail(): string {
     return sessionStorage.getItem(this.EMAIL_KEY);
+  }
+
+  public saveId(id: string) {
+    window.sessionStorage.removeItem(this.ID_KEY);
+    window.sessionStorage.setItem(this.ID_KEY, id);
+  }
+
+  public getId(): string {
+    return sessionStorage.getItem(this.ID_KEY);
   }
 }

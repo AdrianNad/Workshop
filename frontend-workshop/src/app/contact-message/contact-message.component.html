@@ -1,7 +1,14 @@
 <p-fieldset>
-  <p-header>a@fhosfdh.hft</p-header>
-  MessageMessageMessageMessageMessageMessageMessageMessageMessage
+  <p-header>
+    <table border="1">
+      <tr>
+        <td>{{message.senderEmail}}</td>
+      </tr>
+    </table>
+  </p-header>
+  {{message.content}}
 </p-fieldset>
+<p-button style="float: right" label="Ok" styleClass="ui-button-secondary" (onClick)="markAsResponded()"></p-button>
 <a routerLink="response">
   <p-button style="float: right" label="Odpowiedz" styleClass="ui-button-secondary"></p-button>
 </a>

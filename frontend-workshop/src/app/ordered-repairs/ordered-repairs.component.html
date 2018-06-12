@@ -1,15 +1,16 @@
-<div class="message">
-  <app-repair></app-repair>
-</div>
-<div class="message">
-  <app-repair></app-repair>
-</div>
-<div class="message">
-  <app-repair></app-repair>
-</div>
-<div class="message">
-  <app-repair></app-repair>
-</div>
-<div class="message">
-  <app-repair></app-repair>
-</div>
+<p-tabView (onChange)="reload()">
+  <p-tabPanel header="Zlecenia">
+    <div class="card card-block" style="  margin-top: 30px;" *ngFor="let repair of repairsToAccept">
+      <div class="message">
+        <app-ordered-repair [repair]=repair></app-ordered-repair>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Naprawy">
+    <div class="card card-block" style="  margin-top: 30px;" *ngFor="let repair of orderedRepairs">
+      <div class="message">
+        <app-repair [repair]=repair></app-repair>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>

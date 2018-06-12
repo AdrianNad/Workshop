@@ -1,7 +1,7 @@
 interface Car {
-  id: String;
-  licensePlate: String;
-  brand: String;
+  id: string;
+  licensePlate: string;
+  brand: string;
   year: number;
-  customerId: String;
+  customerId: string;
 }

@@ -45,6 +45,7 @@ export class RegisterFormComponent implements OnInit {
   register() {
     this.validateIfNotEmpty();
     if (!this.isEmailEmpty && !this.isPasswordEmpty && !this.isFirstnameEmpty && !this.isSurnameEmpty) {
+      //TODO add phone number
     this.userService.register(this.email, this.password, this.firstname, this.surname, this.selectedRole).subscribe(
       (response: HttpResponse<any>) => {
         console.log(response);

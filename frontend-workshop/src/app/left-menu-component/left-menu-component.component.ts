@@ -55,7 +55,8 @@ export class LeftMenuComponentComponent implements OnInit {
         label: 'umów się na diagnoze',
         icon: 'fa-file-o',
         url: 'diagnosis/scheduler',
-        visible: this.role === 'customer'
+        // visible: this.role === 'customer'
+        visible: false
       },
       {
         label: 'Konto',
@@ -73,7 +74,8 @@ export class LeftMenuComponentComponent implements OnInit {
         label: 'Diagnozy',
         icon: 'fa-file-o',
         url: 'diagnosisList',
-        visible: this.role === 'employee'
+        // visible: this.role === 'employee'
+        visible: false
       }];
   }
 }

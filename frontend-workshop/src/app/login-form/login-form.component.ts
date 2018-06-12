@@ -60,6 +60,7 @@ export class LoginFormComponent implements OnInit {
             console.log(response);
             this.token.saveRole(response.body.role);
             this.token.saveEmail(response.body.email);
+            this.token.saveId(response.body.id);
             this.appComponent.refresh();
           });
   }

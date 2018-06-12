@@ -1,15 +1,5 @@
-<div class="message">
-<app-contact-message class="message"></app-contact-message>
-</div>
-<div class="message">
-  <app-contact-message class="message"></app-contact-message>
-</div>
-<div class="message">
-  <app-contact-message class="message"></app-contact-message>
-</div>
-<div class="message">
-  <app-contact-message class="message"></app-contact-message>
-</div>
-<div class="message">
-  <app-contact-message class="message"></app-contact-message>
+<div class="card card-block" style="  margin-top: 30px;" *ngFor="let message of messages">
+  <div class="message">
+    <app-contact-message [message]="message"></app-contact-message>
+  </div>
 </div>

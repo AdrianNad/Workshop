@@ -1,0 +1,20 @@
+<p-fieldset>
+  <p-header>
+    <table border="1">
+      <tr>
+        <td>{{licensePlate}}</td>
+        <td>{{name}}</td>
+        <td>{{surname}}</td>
+        <td>{{phone}}</td>
+      </tr>
+    </table>
+  </p-header>
+  <p-dataTable class="serviceTable" [value]="repair.workshopServices">
+    <p-column field="name" header="nazwa"></p-column>
+    <p-column field="price" header="cena"></p-column>
+  </p-dataTable>
+</p-fieldset>
+<input id="datetime" type="datetime-local" (input)="date = $event.target.value">
+<input id="price" placeholder="cena" type="number" (input)="price = $event.target.value">
+<p-button style="float: right" label="zatwierdź" (onClick)="accept()" styleClass="ui-button-secondary"></p-button>
+<p-button style="float: right" label="anuluj" (onClick)="cancel()" styleClass="ui-button-secondary"></p-button>

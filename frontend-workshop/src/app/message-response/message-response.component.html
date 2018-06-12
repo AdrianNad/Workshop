@@ -1,6 +1,6 @@
 <p-fieldset>
-  <p-header>a@fhosfdh.hft</p-header>
-  MessageMessageMessageMessageMessageMessageMessageMessageMessage
+  <p-header>{{message.senderEmail}}</p-header>
+  {{message.content}}
 </p-fieldset>
 <div class="fieldInput">
   <textarea [rows]="5" [cols]="30" pInputTextarea placeholder="response" [(ngModel)]="response"></textarea>

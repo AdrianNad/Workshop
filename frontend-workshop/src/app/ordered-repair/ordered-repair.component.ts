@@ -1,26 +1,31 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {UserServiceService} from '../services/user-service.service';
+import {TokenStorageService} from '../services/token-storage.service';
 import {HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {UserServiceService} from '../services/user-service.service';
 import {AppComponent} from '../app.component';
 import {RepairService} from '../services/repair.service';
 import {OrderedRepairsComponent} from '../ordered-repairs/ordered-repairs.component';
+import {MessageService} from '../services/message.service';
 
 @Component({
-  selector: 'app-repair',
-  templateUrl: './repair.component.html',
-  styleUrls: ['./repair.component.css']
+  selector: 'app-ordered-repair',
+  templateUrl: './ordered-repair.component.html',
+  styleUrls: ['./ordered-repair.component.css']
 })
-export class RepairComponent implements OnInit {
+export class OrderedRepairComponent implements OnInit {
 
   @Input() repair: Repair;
   name: string;
   surname: string;
   phone: number;
   licensePlate: string;
+  price: number;
+  date: string;
   services: WorkshopService;
-  constructor(private userService: UserServiceService, private appComponent: AppComponent, private repairService: RepairService
-    , private orderedRepairs: OrderedRepairsComponent) {
+
+  constructor(private userService: UserServiceService, private tokenStorage: TokenStorageService, private appComponent: AppComponent
+    , private repairService: RepairService, private orderedRepairs: OrderedRepairsComponent, private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -57,12 +62,14 @@ export class RepairComponent implements OnInit {
       .subscribe(
         (response: HttpResponse<User>) => {
           this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Wizyta została anulowana'});
-          this.orderedRepairs.fillOrderedRepairs();
+          this.orderedRepairs.fillRepairsToAccept();
         });
   }
 
-  repaired() {
-    this.repair.doesCustomerKnow = true;
+  accept() {
+    this.repair.status = 'ordered';
+    this.repair.date = this.date;
+    this.repair.price = this.price;
     this.repairService.updateRepair(this.repair).catch(() => {
       this.appComponent.messages.push({
         severity: 'error', summary: 'Błąd'
@@ -72,14 +79,15 @@ export class RepairComponent implements OnInit {
     })
       .subscribe(
         (response: HttpResponse<User>) => {
-          this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Wiadomość do klienta została wysłana'});
-          this.orderedRepairs.fillOrderedRepairs();
+          this.orderedRepairs.fillRepairsToAccept();
+          this.sendMessageToCustomer();
         });
   }
-
-  finish() {
-    this.repair.status = 'repaired';
-    this.repairService.updateRepair(this.repair).catch(() => {
+  sendMessageToCustomer() {
+    const message = {id: null, senderEmail: this.tokenStorage.getEmail(), senderRole: this.tokenStorage.getRole()
+      , receiverEmail: this.repair.userEmail, receiverRole: 'customer', content: 'Samochod ' + this.licensePlate + ' jest do odbioru'
+      , isResponded: false};
+    this.messageService.createMessage(message).catch(error => {
       this.appComponent.messages.push({
         severity: 'error', summary: 'Błąd'
         , detail: 'Wystąpił błąd serwera'
@@ -87,9 +95,8 @@ export class RepairComponent implements OnInit {
       return Observable.create(null);
     })
       .subscribe(
-        (response: HttpResponse<User>) => {
-          this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Naprawa została rozliczona'});
-          this.orderedRepairs.fillOrderedRepairs();
+        (response: HttpResponse<any>) => {
+          this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Wiadomość została wysłana'});
         });
   }
 }

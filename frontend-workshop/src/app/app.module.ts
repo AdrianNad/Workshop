@@ -47,6 +47,10 @@ import {TokenStorageService} from './services/token-storage.service';
 import {AuthService} from './services/auth.service';
 import { MainComponent } from './main/main.component';
 import {WorkshopServiceService} from './services/workshop-service.service';
+import {RepairService} from './services/repair.service';
+import {TabViewModule} from 'primeng/tabview';
+import { OrderedRepairComponent } from './ordered-repair/ordered-repair.component';
+import {MessageService} from './services/message.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +76,8 @@ import {WorkshopServiceService} from './services/workshop-service.service';
     OrderedRepairsComponent,
     RepairComponent,
     DiagnosisListComponent,
-    MainComponent
+    MainComponent,
+    OrderedRepairComponent
   ],
   imports: [
     BrowserModule,
@@ -95,14 +100,17 @@ import {WorkshopServiceService} from './services/workshop-service.service';
     FieldsetModule,
     ScheduleModule,
     GrowlModule,
-    HttpClientModule
+    HttpClientModule,
+    TabViewModule
   ],
   providers: [
     UserServiceService,
     TokenStorageService,
     AuthService,
     LeftMenuComponentComponent,
-    WorkshopServiceService
+    WorkshopServiceService,
+    RepairService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
