@@ -38,7 +38,10 @@ export class RepairHistoryComponent implements OnInit {
               value.status = 'anulowany';
             }
             if (value.status === 'ordered') {
-              value.status = 'zamówiony';
+              value.status = 'umówiony';
+            }
+            if (value.status === 'waiting') {
+              value.status = 'oczekuje na potwierdzenie';
             }
           });
           this.repairs = response.body;
