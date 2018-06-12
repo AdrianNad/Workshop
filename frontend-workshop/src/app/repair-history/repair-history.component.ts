@@ -30,6 +30,17 @@ export class RepairHistoryComponent implements OnInit {
     })
       .subscribe(
         (response: HttpResponse<Repair[]>) => {
+          response.body.forEach(function (value) {
+            if (value.status === 'repaired') {
+              value.status = 'naprawiony';
+            }
+            if (value.status === 'canceled') {
+              value.status = 'anulowany';
+            }
+            if (value.status === 'ordered') {
+              value.status = 'zamówiony';
+            }
+          });
           this.repairs = response.body;
         });
   }

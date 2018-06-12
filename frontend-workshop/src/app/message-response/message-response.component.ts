@@ -28,7 +28,7 @@ export class MessageResponseComponent implements OnInit {
     this.validateIfNotEmpty();
     if (this.isResponseEmpty !== true) {
       const message = {id: null, senderEmail: this.tokenStorage.getEmail(), senderRole: this.tokenStorage.getRole()
-        , receiverEmail: this.message.senderEmail, receiverRole: this.message.senderRole, content: this.response, isResponded: true};
+        , receiverEmail: this.message.senderEmail, receiverRole: this.message.senderRole, content: this.response, isResponded:  false};
       this.messageService.createMessage(message).catch(error => {
         this.appComponent.messages.push({
           severity: 'error', summary: 'Błąd'
@@ -39,7 +39,18 @@ export class MessageResponseComponent implements OnInit {
         .subscribe(
           (response: HttpResponse<any>) => {
             this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Wiadomość została wysłana'});
-            this.router.navigateByUrl('/main');
+            this.messageService.markMessageAsRead(this.message.id).catch(error => {
+              this.appComponent.messages.push({
+                severity: 'error', summary: 'Błąd'
+                , detail: 'Wystąpił błąd serwera'
+              });
+              return Observable.create(null);
+            })
+              .subscribe(
+                (response2: HttpResponse<any>) => {
+                  this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Wiadomość została wysłana'});
+                  this.router.navigateByUrl('/main');
+                });
           });
     }
   }

@@ -17,7 +17,7 @@
     <p-message class="message" severity="error" text="nazwa jest wymagana" *ngIf="isLicensePlateEmpty"></p-message>
   </div>
   <div class="fieldInput">
-    <input type="number" pInputText placeholder="rok produkcji" class="ng-dirty ng-invalid"
+    <input type="number" min="0" oninput="validity.valid||(value='');" pInputText placeholder="rok produkcji" class="ng-dirty ng-invalid"
            (input)="year = $event.target.value">
     <p-message class="message" severity="error" text="rok produkcji jest wymagany" *ngIf="isYearEmpty"></p-message>
   </div>

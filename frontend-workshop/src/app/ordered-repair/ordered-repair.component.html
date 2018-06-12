@@ -14,7 +14,7 @@
     <p-column field="price" header="cena"></p-column>
   </p-dataTable>
 </p-fieldset>
-<input id="datetime" type="datetime-local" (input)="date = $event.target.value">
-<input id="price" placeholder="cena" type="number" (input)="price = $event.target.value">
+<input id="datetime" type="datetime-local" [ngModel] ="date | date:'yyyy-MM-ddThh:mm'" (ngModelChange)="date = $event">
+<input id="price" placeholder="cena" type="number" oninput="validity.valid||(value='');" min="0" (input)="price = $event.target.value">
 <p-button style="float: right" label="zatwierdź" (onClick)="accept()" styleClass="ui-button-secondary"></p-button>
 <p-button style="float: right" label="anuluj" (onClick)="cancel()" styleClass="ui-button-secondary"></p-button>

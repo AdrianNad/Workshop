@@ -4,6 +4,7 @@ import {HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {AppComponent} from '../app.component';
 import {MessagesComponent} from '../messages/messages.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contact-message',
@@ -14,7 +15,8 @@ export class ContactMessageComponent implements OnInit, OnDestroy {
 
   @Input() message: Message;
 
-  constructor(private messageService: MessageService, private appComponent: AppComponent, private messageComponent: MessagesComponent) {
+  constructor(private messageService: MessageService, private appComponent: AppComponent, private messageComponent: MessagesComponent
+  , private router: Router) {
   }
 
   ngOnInit() {
@@ -30,9 +32,7 @@ export class ContactMessageComponent implements OnInit, OnDestroy {
   }
 
   markAsResponded() {
-    //TODO mark as responded there is some bug
-    this.message.isResponded = true;
-    this.messageService.createMessage(this.message).catch(error => {
+    this.messageService.markMessageAsRead(this.message.id).catch(error => {
       this.appComponent.messages.push({
         severity: 'error', summary: 'Błąd'
         , detail: 'Wystąpił błąd serwera'
@@ -43,6 +43,7 @@ export class ContactMessageComponent implements OnInit, OnDestroy {
         (response: HttpResponse<any>) => {
           this.appComponent.messages.push({severity: 'success', summary: 'Sukces', detail: 'Wiadomość została oznaczona jako przeczytana'});
           this.messageComponent.fillMessages();
+          this.router.navigateByUrl('/messages');
         });
   }
 }

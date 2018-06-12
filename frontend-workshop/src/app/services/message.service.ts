@@ -11,8 +11,9 @@ export class MessageService {
   }
 
   createMessage(message: Message): Observable<any> {
+    console.log(message);
     const headers = {Authorization: this.tokenStorage.getToken()};
-    console.log('createService ::');
+    console.log('createMessage ::');
     return this.http.post('http://localhost:8080/messages', message, {headers: headers, observe: 'response'}).catch(error => {
       return Observable.throw(error.status);
     });
@@ -23,6 +24,14 @@ export class MessageService {
     const params = new HttpParams().set('role', role).set('email', email);
     console.log('getMessagesForEmailOrRole ::');
     return this.http.get('http://localhost:8080/messages', {headers: headers, params: params, observe: 'response'}).catch(error => {
+      return Observable.throw(error.status);
+    });
+  }
+
+  markMessageAsRead(id: string): Observable<Message[]> {
+    const headers = {Authorization: this.tokenStorage.getToken()};
+    console.log('markMessageAsRead ::');
+    return this.http.get('http://localhost:8080/messages/read/' + id, {headers: headers, observe: 'response'}).catch(error => {
       return Observable.throw(error.status);
     });
   }

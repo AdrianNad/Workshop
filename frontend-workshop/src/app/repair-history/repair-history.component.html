@@ -2,7 +2,28 @@
   Lista napraw
 </div>
 <p-dataTable class="repairTable" [value]="repairs">
-  <p-column field="date" header="data"></p-column>
+  <p-column field="workshopServices" header="czynności">
+    <ng-template let-col let-rows="rowData" let-ri="rowIndex" pTemplate="body">
+      <div>
+        <p *ngFor="let service of rows.workshopServices">{{service.name}}</p>
+      </div>
+    </ng-template>
+  </p-column>
+  <p-column header="data">
+    <ng-template let-col let-rows="rowData" let-ri="rowIndex" pTemplate="body">
+      <div>
+        <p>{{rows.date | date: 'd,MM,yyyy'}}</p>
+      </div>
+    </ng-template>
+  </p-column>
+
   <p-column field="licensePlate" header="samochód"></p-column>
-  <p-column field="price" header="cena"></p-column>
+  <p-column header="cena">
+    <ng-template let-col let-rows="rowData" let-ri="rowIndex" pTemplate="body">
+      <div>
+        <p>{{rows.price}} zł</p>
+      </div>
+    </ng-template>
+  </p-column>
+  <p-column field="status" header="status"></p-column>
 </p-dataTable>

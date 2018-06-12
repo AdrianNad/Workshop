@@ -74,7 +74,7 @@ export class ServiceListComponentComponent implements OnInit {
     })
       .subscribe(
         (response: HttpResponse<WorkshopService[]>) => {
-          this.services = response.body;
+          this.loadServices();
         });
   }
   isAdmin() {

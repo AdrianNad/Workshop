@@ -23,12 +23,12 @@ export class OrderedRepairComponent implements OnInit {
   price: number;
   date: string;
   services: WorkshopService;
-
   constructor(private userService: UserServiceService, private tokenStorage: TokenStorageService, private appComponent: AppComponent
     , private repairService: RepairService, private orderedRepairs: OrderedRepairsComponent, private messageService: MessageService) {
   }
 
   ngOnInit() {
+    this.date = new Date().toLocaleString();
     this.loadInformationAboutCustomer();
     this.licensePlate = this.repair.licensePlate;
   }
@@ -67,26 +67,34 @@ export class OrderedRepairComponent implements OnInit {
   }
 
   accept() {
-    this.repair.status = 'ordered';
-    this.repair.date = this.date;
-    this.repair.price = this.price;
-    this.repairService.updateRepair(this.repair).catch(() => {
-      this.appComponent.messages.push({
-        severity: 'error', summary: 'Błąd'
-        , detail: 'Wystąpił błąd serwera'
-      });
-      return Observable.create(null);
-    })
-      .subscribe(
-        (response: HttpResponse<User>) => {
-          this.orderedRepairs.fillRepairsToAccept();
-          this.sendMessageToCustomer();
+    if (this.price !== undefined && this.price !== null) {
+      console.log(this.price);
+      this.repair.status = 'ordered';
+      this.repair.date = this.date;
+      this.repair.price = this.price;
+      this.repairService.updateRepair(this.repair).catch(() => {
+        this.appComponent.messages.push({
+          severity: 'error', summary: 'Błąd'
+          , detail: 'Wystąpił błąd serwera'
         });
+        return Observable.create(null);
+      })
+        .subscribe(
+          (response: HttpResponse<User>) => {
+            this.orderedRepairs.fillRepairsToAccept();
+            this.sendMessageToCustomer();
+          });
+    } else {
+      this.appComponent.messages.push({severity: 'error', summary: 'Błąd', detail: 'Uzupełnij cene'});
+    }
   }
+
   sendMessageToCustomer() {
-    const message = {id: null, senderEmail: this.tokenStorage.getEmail(), senderRole: this.tokenStorage.getRole()
+    const message = {
+      id: null, senderEmail: this.tokenStorage.getEmail(), senderRole: this.tokenStorage.getRole()
       , receiverEmail: this.repair.userEmail, receiverRole: 'customer', content: 'Samochod ' + this.licensePlate + ' jest do odbioru'
-      , isResponded: false};
+      , isResponded: false
+    };
     this.messageService.createMessage(message).catch(error => {
       this.appComponent.messages.push({
         severity: 'error', summary: 'Błąd'
