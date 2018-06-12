@@ -1,25 +1,31 @@
 <div class="fieldInput">
-  <input type="text" pInputText placeholder="email" class="ng-dirty ng-invalid"
+  <input type="text" pInputText placeholder="login" class="ng-dirty ng-invalid"
          (input)="email = $event.target.value">
-  <p-message class="message" severity="error" text="Username is required" *ngIf="isEmailEmpty"></p-message>
+  <p-message class="message" severity="error" text="login jest wymagany" *ngIf="isEmailEmpty"></p-message>
 </div>
 
 <div class="fieldInput">
-  <input type="password" pInputText placeholder="password" class="ng-dirty ng-invalid"
+  <input type="password" pInputText placeholder="hasło" class="ng-dirty ng-invalid"
          (input)="password = $event.target.value">
-  <p-message class="message" severity="error" text="Password is required" *ngIf="isPasswordEmpty"></p-message>
+  <p-message class="message" severity="error" text="hasło jest wymagane" *ngIf="isPasswordEmpty"></p-message>
 </div>
 
 <div class="fieldInput">
-  <input type="text" pInputText placeholder="firstname" class="ng-dirty ng-invalid"
+  <input type="text" pInputText placeholder="imie" class="ng-dirty ng-invalid"
          (input)="firstname = $event.target.value">
-  <p-message class="message" severity="error" text="Firstname is required" *ngIf="isFirstnameEmpty"></p-message>
+  <p-message class="message" severity="error" text="imie jest wymagane" *ngIf="isFirstnameEmpty"></p-message>
 </div>
 
 <div class="fieldInput">
-  <input type="text" pInputText placeholder="surname" class="ng-dirty ng-invalid"
+  <input type="text" pInputText placeholder="nazwisko" class="ng-dirty ng-invalid"
          (input)="surname = $event.target.value">
-  <p-message class="message" severity="error" text="Surname is required" *ngIf="isSurnameEmpty"></p-message>
+  <p-message class="message" severity="error" text="nazwisko jest wymagane" *ngIf="isSurnameEmpty"></p-message>
+</div>
+
+<div class="fieldInput">
+  <input type="number" pInputText placeholder="numer telefonu" class="ng-dirty ng-invalid"
+         (input)="phoneNumber = $event.target.value">
+  <p-message class="message" severity="error" text="numer telefonu jest wymagany" *ngIf="isPhoneNumberEmpty"></p-message>
 </div>
 
 <div class="fieldInput" [hidden]="!isAdmin()">

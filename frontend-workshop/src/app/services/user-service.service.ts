@@ -22,8 +22,9 @@ export class UserServiceService {
     });
   }
 
-  public register(username: String, password: String, firstname: String, surname: String, role: String): Observable<HttpResponse<any>> {
-    const user = {email: username, password: password, firstname: firstname, surname: surname, role: role};
+  public register(username: String, password: String, firstname: String, surname: String, role: String
+                  , phoneNumber: String): Observable<HttpResponse<any>> {
+    const user = {email: username, password: password, firstname: firstname, surname: surname, role: role, phone: phoneNumber};
     console.log('attempAuth ::');
     return this.http.post('http://localhost:8080/users/signUp', user,  { observe: 'response' });
   }

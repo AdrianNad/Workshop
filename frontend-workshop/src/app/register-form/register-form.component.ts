@@ -16,6 +16,8 @@ export class RegisterFormComponent implements OnInit {
   isPasswordEmpty: boolean;
   isFirstnameEmpty: boolean;
   isSurnameEmpty: boolean;
+  isPhoneNumberEmpty: boolean;
+  phoneNumber: string;
   email: String;
   password: String;
   firstname: String;
@@ -35,6 +37,7 @@ export class RegisterFormComponent implements OnInit {
     this.isPasswordEmpty = false;
     this.isFirstnameEmpty = false;
     this.isSurnameEmpty = false;
+    this.isPhoneNumberEmpty = false;
     this.roles = [
       {label: 'customer', value: 'customer'},
       {label: 'employee', value: 'employee'},
@@ -44,9 +47,8 @@ export class RegisterFormComponent implements OnInit {
 
   register() {
     this.validateIfNotEmpty();
-    if (!this.isEmailEmpty && !this.isPasswordEmpty && !this.isFirstnameEmpty && !this.isSurnameEmpty) {
-      //TODO add phone number
-    this.userService.register(this.email, this.password, this.firstname, this.surname, this.selectedRole).subscribe(
+    if (!this.isEmailEmpty && !this.isPasswordEmpty && !this.isFirstnameEmpty && !this.isSurnameEmpty && !this.isPhoneNumberEmpty) {
+    this.userService.register(this.email, this.password, this.firstname, this.surname, this.selectedRole, this.phoneNumber).subscribe(
       (response: HttpResponse<any>) => {
         console.log(response);
       });
@@ -62,6 +64,7 @@ export class RegisterFormComponent implements OnInit {
     this.isPasswordEmpty = !this.password;
     this.isFirstnameEmpty = !this.firstname;
     this.isSurnameEmpty = !this.surname;
+    this.isPhoneNumberEmpty = !this.phoneNumber;
   }
   isAdmin() {
     return this.currentRole === 'admin';
