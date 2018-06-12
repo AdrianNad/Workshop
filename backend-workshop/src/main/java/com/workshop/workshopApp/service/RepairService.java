@@ -30,6 +30,6 @@ public class RepairService {
     }
 
     public List<Repair> getRepairsForUser(String email) {
-        return repairRepository.findByUserEmail(email);
+        return repairRepository.findByUserEmailOrderByDateDesc(email);
     }
 }

@@ -26,4 +26,10 @@ public class MessageService {
         return messageRepository.findAllByReceiverRoleOrReceiverEmail(
                 role, email).stream().filter(x -> !x.isResponded()).collect(Collectors.toList());
     }
+
+    public Message setMessageAsRead(String id) {
+        Message message = messageRepository.findById(id).orElseThrow(() -> new IllegalStateException("No such message"));
+        message.setResponded(true);
+        return messageRepository.save(message);
+    }
 }

@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -21,6 +20,5 @@ public class Message {
     private String receiverEmail;
     private String receiverRole;
     private String content;
-    @Indexed(name = "responded")
-    private boolean isResponded;
+    private boolean responded;
 }

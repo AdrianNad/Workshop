@@ -10,5 +10,5 @@ import java.util.List;
 public interface RepairRepository extends MongoRepository<Repair, String> {
     List<Repair> findByStatusOrderByDate(String status);
 
-    List<Repair> findByUserEmail(String email);
+    List<Repair> findByUserEmailOrderByDateDesc(String email);
 }

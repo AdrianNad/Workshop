@@ -28,4 +28,9 @@ public class MessageController {
     public List<Message> getNotRespondedMessagesForRoleOrUserEmail(@RequestParam String role, @RequestParam String email) {
         return messageService.getNotRespondedMessagesForRoleOrUserEmail(role, email);
     }
+
+    @GetMapping("/read/{id}")
+    public Message markMessageAsRead(@PathVariable String id) {
+        return messageService.setMessageAsRead(id);
+    }
 }
